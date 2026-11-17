@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Moved renhold – digitalt yrkesnorskkurs for voksne deltakere på A2-nivå.">
+<title>Moved renhold – digital læringsplattform</title>
+<style>
+:root{--navy:#203b4b;--teal:#176f69;--mint:#eaf4f1;--gold:#d7a64a;--ink:#263843;--muted:#687984;--paper:#f4f6f7;--line:#dfe6e8;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.65 Arial,Helvetica,sans-serif}
+button{font:inherit;cursor:pointer}a{color:var(--teal)}
+header{height:64px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,54px);position:sticky;top:0;z-index:10}
+.brand{font-weight:700;letter-spacing:.08em;color:var(--navy);font-size:15px}.brand span{color:var(--teal)}
+.header-note{font-size:12px;color:var(--muted)}
+.layout{display:grid;grid-template-columns:255px minmax(0,1fr);min-height:calc(100vh - 64px)}
+aside#side{background:#fff;border-right:1px solid var(--line);padding:22px 14px}
+.side-label{font-size:10px;font-weight:700;letter-spacing:.14em;color:#84929a;margin:12px 10px}
+.nav{width:100%;border:0;background:transparent;text-align:left;padding:10px 12px;border-radius:6px;margin:3px 0;color:#40545f;display:flex;gap:10px;align-items:center}
+.nav:hover,.nav.active{background:var(--mint);color:var(--teal);font-weight:700}
+.nav .num{font-size:11px;background:#edf1f2;border-radius:4px;padding:3px 7px;color:#50636e}
+.nav.active .num{background:var(--teal);color:white}
+main{max-width:1450px;width:100%;padding:34px clamp(18px,4vw,58px) 70px;margin:auto}
+.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.15em;font-weight:700;color:var(--teal)}
+h1{font-size:clamp(29px,4vw,43px);line-height:1.15;letter-spacing:-.035em;color:var(--navy);margin:8px 0 12px}
+h2{font-size:23px;line-height:1.25;color:var(--navy);margin:0 0 12px}
+h3{font-size:17px;color:var(--navy);margin:20px 0 8px}
+p{margin:8px 0 13px}.muted{color:var(--muted)}
+.hero,.panel,.module-card{background:#fff;border:1px solid var(--line);border-radius:9px}
+.hero{padding:clamp(22px,4vw,38px);background:#fff}
+.hero p{max-width:850px;color:#566a75;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0 28px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:8px;padding:15px}.stat strong{display:block;font-size:25px;color:var(--teal)}.stat small{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.module-card{padding:18px;cursor:pointer;text-align:left;min-height:190px;display:flex;flex-direction:column;color:var(--ink)}
+.module-card:hover{border-color:#8ab9b2;background:#fbfdfc}.module-card .module-no{font-size:11px;color:var(--teal);font-weight:700;letter-spacing:.08em}
+.module-card h3{margin:9px 0 6px;font-size:17px}.module-card p{font-size:13px;color:var(--muted);margin:0 0 14px}
+.card-foot{margin-top:auto;font-size:12px;color:var(--muted)}
+.module-head{background:#fff;border:1px solid var(--line);border-radius:9px;padding:24px;margin-bottom:16px}
+.module-head h1{font-size:30px;margin:5px 0 8px}.module-head p{color:var(--muted);margin:0}
+.status{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:12px 15px;background:#fff;border:1px solid var(--line);border-radius:7px;margin:12px 0 18px;font-size:13px}
+.progress{width:150px;height:7px;background:#edf0f1;border-radius:10px;overflow:hidden}.progress i{display:block;height:100%;background:var(--teal);width:0}
+.tabs{display:flex;flex-wrap:wrap;gap:5px;border-bottom:1px solid var(--line);padding-bottom:10px;margin:18px 0}
+.tab{border:1px solid transparent;background:transparent;color:#586c76;border-radius:5px;padding:8px 11px;font-size:12px}
+.tab:hover,.tab.active{background:var(--mint);color:var(--teal);border-color:#d6e8e3;font-weight:700}
+.panel{padding:22px;margin:14px 0}
+.callout{padding:13px 15px;background:#edf6f3;border-left:4px solid var(--teal);border-radius:4px;margin:14px 0}
+.warning{padding:13px 15px;background:#fff7e8;border-left:4px solid var(--gold);border-radius:4px;margin:14px 0}
+.word-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.word{border:1px solid var(--line);border-radius:6px;padding:12px}.word b{color:var(--navy)}.word small{display:block;color:var(--muted);margin-top:4px}
+.task{padding:14px 0;border-bottom:1px solid var(--line)}.task:last-child{border:0}
+.task label{display:block;margin:7px 0}.task input[type=text]{width:100%;max-width:600px;border:1px solid #cbd6da;border-radius:5px;padding:9px}
+textarea{width:100%;min-height:90px;border:1px solid #cbd6da;border-radius:5px;padding:10px;font:inherit}
+.btn{border:0;border-radius:5px;background:var(--teal);color:#fff;padding:10px 14px;font-weight:700;font-size:13px}
+.btn.secondary{background:#edf1f2;color:var(--navy);border:1px solid var(--line)}
+.btn:hover{filter:brightness(.96)}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.feedback{padding:10px 12px;background:#f1f5f5;border-radius:5px;margin-top:8px;font-size:13px}
+.schedule{display:grid;grid-template-columns:105px 1fr 65px;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.schedule:last-child{border:0}.time{color:var(--teal);font-weight:700;font-size:12px}.mins{text-align:right;color:var(--muted);font-size:12px}
+.question{border:1px solid var(--line);border-radius:7px;padding:15px;margin:12px 0}
+.option{display:block;width:100%;text-align:left;background:#f7f9f9;border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:7px 0;color:var(--ink)}
+.option:hover{border-color:var(--teal)}.option.correct{background:#e8f5ed;border-color:#6caf89}.option.wrong{background:#fff0ed;border-color:#d98b7f}
+.answer-key{background:#fff9eb;border:1px solid #efdfb8;border-radius:7px;padding:14px;margin:10px 0}
+footer{border-top:1px solid var(--line);margin-top:35px;padding-top:16px;color:var(--muted);font-size:12px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}aside#side{display:flex;overflow:auto;padding:8px;border-right:0;border-bottom:1px solid var(--line)}.side-label{display:none}.nav{width:auto;min-width:max-content}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.grid,.stats,.word-grid{grid-template-columns:1fr}.header-note{display:none}main{padding:20px 13px 50px}.status{align-items:flex-start;flex-direction:column}.schedule{grid-template-columns:75px 1fr 45px}}
+@media print{header,aside,.tabs,.row,.no-print,button{display:none!important}.layout{display:block}main{padding:0;max-width:none}.panel,.hero,.module-head{box-shadow:none;border:0;padding:8px}.module-head h1{font-size:23px}body{background:white;font-size:11pt}.task{break-inside:avoid}}
+
+/* WCAG-oriented readability and restrained module differentiation */
+body{font-size:17px;line-height:1.7}
+.header-note{font-size:14px}
+.side-label{font-size:12px}
+.nav{font-size:15px;line-height:1.45;min-height:44px;gap:9px}
+.nav .num{font-size:13px;min-width:30px;text-align:center}
+.nav-pending{color:#53636b;background:#fafbfb}
+.nav-pending:hover{background:#f1f4f5;color:#344b56}
+.pending-label{margin-left:auto;font-size:11px;color:#65757d;background:#edf0f1;padding:3px 7px;border-radius:4px;white-space:nowrap}
+.module-card{min-height:205px;padding:21px}
+.module-card h3{font-size:19px;line-height:1.35}
+.module-card p{font-size:15px;line-height:1.55}
+.module-no,.card-foot{font-size:13px}
+.module-card.not-ready{opacity:.88}
+.module-tone-0{background:#f1f6f3;border-color:#dce9e1}
+.module-tone-1{background:#f1f4f8;border-color:#dce4ed}
+.module-tone-2{background:#f7f3ee;border-color:#ece2d6}
+.module-tone-3{background:#f4f1f7;border-color:#e5dfee}
+.module-tone-4{background:#f1f6f6;border-color:#dce9e8}
+.module-tone-5{background:#f7f5ed;border-color:#ebe5d1}
+.module-tone-0:hover,.module-tone-1:hover,.module-tone-2:hover,.module-tone-3:hover,.module-tone-4:hover,.module-tone-5:hover{filter:brightness(.985)}
+h1{line-height:1.2}
+h2{font-size:26px;line-height:1.35}
+h3{font-size:19px;line-height:1.4}
+p,li{line-height:1.75}
+.tab,.btn,.option{font-size:14px;min-height:42px}
+.word{font-size:16px}
+.word small{font-size:14px;line-height:1.55}
+.muted,.callout,.warning{font-size:15px}
+.schedule{font-size:15px}
+.time,.mins{font-size:14px}
+:focus-visible{outline:3px solid #9a6a00!important;outline-offset:3px}
+a{color:#075d58;text-decoration:underline;text-underline-offset:2px}
+@media(max-width:900px){.nav{font-size:14px}.module-card h3{font-size:18px}}
+</style>
+</head>
+<body>
+<header><div class="brand">MOVE <span>·</span> MOLDE VOKSENOPPLÆRING</div><div class="header-note">Moved renhold · Yrkesnorsk A2</div></header>
+<div class="layout">
+<aside id="side">
+<div style="width:100%">
+<div class="side-label">KURS</div>
+<button class="nav active" id="homeNav" onclick="showHome()"><span class="num">⌂</span> Kursoversikt</button>
+<div class="side-label">MODULER</div>
+<div id="moduleNav"></div>
+<div class="side-label">RESSURSER</div>
+<button class="nav" onclick="showTeacher()"><span class="num">L</span> Lærerressurser</button>
+</div>
+</aside>
+<main id="app" aria-live="polite"></main>
+</div>
+<script>
+"use strict";
+const modules=[{"n": 1, "title": "Introduksjon til renholdsyrket", "subtitle": "Arbeidsplassen, rollen og profesjonell yrkesutøvelse", "goals": ["Jeg kan forklare hva en renholder gjør.", "Jeg kan bruke sentrale ord om arbeidsplassen og arbeidsoppgaver.", "Jeg kan presentere meg selv og stille spørsmål på jobb.", "Jeg kan følge en enkel arbeidsbeskjed og be om avklaring.", "Jeg kan beskrive en arbeidsdag med rekkefølgeord."], "reading_title": "En arbeidsdag i renhold", "reading": "Mariam begynner på jobb klokka sju. Hun møter kollegaen sin ved inngangen og leser arbeidsplanen. I dag skal hun gjøre rent i garderoben, på kontoret og i møterommet. Før hun starter, spør hun lederen om det er spesielle beskjeder. Lederen sier at et møterom skal brukes klokka ni. Derfor må Mariam gjøre dette rommet først.\n\nMariam tar på arbeidstøy og finner fram utstyret hun trenger. Hun ser at vognen er ryddig, og at hun har nok kluter og poser. Hun følger rutinene på arbeidsplassen. Når hun er ferdig med et rom, kontrollerer hun arbeidet. Hun ser etter om avfallsbeholderen er tømt, om synlige flater er rengjort, og om gulvet ser rent ut.\n\nI garderoben oppdager Mariam at en kran drypper. Hun prøver ikke å reparere kranen. Hun melder fra til lederen og beskriver problemet. Lederen registrerer avviket og kontakter riktig person. Mariam fortsetter med neste oppgave.\n\nPå slutten av vakten rydder hun utstyret, sorterer avfallet etter arbeidsplassens rutiner og gir beskjed om det som ikke er ferdig. Hun forteller også at møterommet er klart. Mariam vet at godt renhold handler om mer enn å vaske. Det handler også om planlegging, kommunikasjon, sikkerhet og respekt for menneskene som bruker bygget.", "vocab": [{"word": "renholder", "meaning": "person som arbeider med å holde lokaler rene"}, {"word": "arbeidsplass", "meaning": "stedet der vi arbeider"}, {"word": "arbeidsoppgave", "meaning": "en jobb eller aktivitet vi skal gjøre"}, {"word": "arbeidsplan", "meaning": "oversikt over oppgaver og tidspunkt"}, {"word": "rutine", "meaning": "en fast måte å gjøre noe på"}, {"word": "kvalitet", "meaning": "hvor godt arbeidet er utført"}, {"word": "bruker", "meaning": "person som bruker rommet eller bygningen"}, {"word": "kollega", "meaning": "person du arbeider sammen med"}, {"word": "leder", "meaning": "person som har ansvar for arbeidet"}, {"word": "avvik", "meaning": "noe som ikke er som planlagt eller avtalt"}, {"word": "utstyr", "meaning": "ting og redskaper vi bruker"}, {"word": "pause", "meaning": "tid der vi hviler fra arbeidet"}], "grammar": "Presens og verb i arbeidsbeskrivelser", "grammar_text": "Presens bruker vi når vi forteller hva noen gjør nå, eller hva noen vanligvis gjør. Eksempel: Jeg møter klokka sju. Mariam leser arbeidsplanen. Vi rydder utstyret. Mange verb får -r i presens: å jobbe – jobber, å lese – leser, å rydde – rydder. Noen verb er uregelrette: å være – er, å gjøre – gjør, å gå – går, å ha – har.", "tasks": [{"title": "A. Finn riktig betydning", "items": ["Velg riktig forklaring.", "Arbeidsplan", "Oversikt over oppgaver og tidspunkt", "Pause", "Tid der vi hviler fra arbeidet", "Kollega", "Person du arbeider sammen med", "Avvik", "Noe som ikke er som planlagt"]}, {"title": "B. Sant eller usant", "items": ["Les setningen og vurder om den stemmer med teksten.", "Mariam begynner på jobb klokka sju.", "Møterommet skal brukes klokka ni.", "Mariam reparerer kranen selv.", "Hun melder fra om problemet.", "Hun rydder utstyret før hun går hjem."]}, {"title": "C. Sett i riktig rekkefølge", "items": ["Nummerer fra 1 til 5.", "Mariam leser arbeidsplanen.", "Hun finner fram utstyret.", "Hun kontrollerer rommet.", "Hun melder fra om en dryppende kran.", "Hun rydder utstyret etter vakten."]}, {"title": "D. Fyll inn ord", "items": ["Bruk ordene: arbeidsplan – kollega – rutiner – avvik – utstyr.", "Jeg leser __________ før jeg starter.", "Jeg arbeider sammen med en __________.", "Jeg følger arbeidsplassens __________.", "En dryppende kran kan meldes som et __________.", "Jeg finner fram __________ før arbeidet."]}, {"title": "E. Grammatikk", "items": ["Skriv verbet i presens.", "Jeg (møte) __________ klokka sju.", "Hun (lese) __________ planen.", "Vi (rydde) __________ vognen.", "Lederen (ha) __________ ansvar.", "De (gå) __________ til neste rom."]}, {"title": "F. Bygg setninger", "items": ["Sett ordene i riktig rekkefølge.", "arbeidsplanen / jeg / leser / først", "kollegaen / jeg / spør", "avvik / lederen / jeg / melder / fra / om", "utstyret / etterpå / rydder / jeg"]}, {"title": "G. Velg en høflig beskjed", "items": ["Velg den beste setningen i situasjonen.", "Du forstår ikke beskjeden. Hva sier du?", "Kan du forklare det en gang til, litt saktere?", "Du vil vite hvilket rom du skal ta først.", "Hvilket rom skal jeg begynne med?", "Du er ferdig med oppgaven.", "Nå er møterommet ferdig. Kan du kontrollere det?"]}], "oral": [{"title": "Bli kjent med arbeidsplassen", "description": "To og to. Person A er ny på jobb. Person B er erfaren kollega. Presenter arbeidsplassen, vis tre rom og forklar hva som gjøres der. Bytt roller etter fire minutter."}, {"title": "Muntlig arbeidsplan", "description": "Tre personer får roller: leder, renholder og kollega. Lederen gir tre oppgaver og én tidsfrist. Renholderen gjentar beskjeden med egne ord. Kollegaen stiller ett oppklarende spørsmål."}, {"title": "Hva ville du gjort?", "description": "Snakk sammen om situasjonen: Du finner en ødelagt lampe, et vått gulv eller en full avfallsbeholder. Hva gjør du? Hvem kontakter du? Hvilke ord bruker du?"}, {"title": "To-minutters fagprat", "description": "Forklar en vanlig arbeidsdag fra du kommer på jobb til du går hjem. Bruk først, deretter, etterpå, til slutt."}], "practical": ["Finn fem ting eller steder i læringsrommet og presenter dem med riktig fagord.", "Lag en enkel arbeidsplan for et rom med fire oppgaver.", "Øv på å gi og ta imot en arbeidsbeskjed. Gjenta beskjeden for å vise at du har forstått.", "Gjør en sluttkontroll og forklar hva du ser etter."]}, {"n": 2, "title": "Renholdsutstyr", "subtitle": "Navn, funksjon, valg, bruk og vedlikehold av utstyr", "goals": ["Jeg kan navngi vanlig renholdsutstyr.", "Jeg kan forklare hva utstyret brukes til.", "Jeg kan velge utstyr ut fra en enkel arbeidsoppgave.", "Jeg kan beskrive hvordan jeg klargjør, bruker og rydder utstyr.", "Jeg kan forstå og gi korte instruksjoner."], "reading_title": "Riktig utstyr til riktig oppgave", "reading": "En renholder bruker forskjellig utstyr gjennom arbeidsdagen. Før arbeidet starter, leser renholderen arbeidsplanen og vurderer hvilke oppgaver som skal gjøres. Deretter velger renholderen utstyr som passer til rommet, overflaten og arbeidsmetoden.\n\nEn mikrofiberklut kan brukes til å tørke støv og rengjøre mange typer overflater. Kluten må brukes og skiftes etter arbeidsplassens rutiner. En mopp brukes til gulv. Moppen festes på et moppebrett, og skaftet justeres slik at det passer til den som arbeider. Riktig arbeidshøyde kan gjøre arbeidet mer behagelig.\n\nEn støvsuger brukes til å fjerne støv og smuss fra gulv og andre egnede flater. Før bruk kontrollerer renholderen at ledningen og utstyret ikke har synlige skader. En nal kan brukes til å trekke vann av en glatt flate, for eksempel et vindu. En børste kan hjelpe til med å løsne smuss på steder der en klut ikke kommer godt til.\n\nUtstyret må holdes rent og i god stand. Brukt utstyr skal håndteres etter lokale rutiner. Kluter og mopper leveres til riktig vask eller oppbevaring. Vann tømmes på anvist sted. Renholderen melder fra hvis noe er ødelagt. Utstyr som er skadet, skal ikke brukes dersom det kan føre til fare.\n\nGodt utstyrsvalg handler ikke om å bruke flest mulig redskaper. Det handler om å velge riktig redskap, bruke det riktig og ta vare på det etterpå.", "vocab": [{"word": "mikrofiberklut", "meaning": "klut som samler opp smuss og støv"}, {"word": "mopp", "meaning": "redskap med tekstil som brukes på gulv"}, {"word": "moppebrett", "meaning": "holder som moppen festes på"}, {"word": "skaft", "meaning": "lang del som vi holder i"}, {"word": "bøtte", "meaning": "beholder til vann eller løsning"}, {"word": "renholdsvogn", "meaning": "vogn til transport og oppbevaring av utstyr"}, {"word": "støvsuger", "meaning": "maskin som suger opp støv og smuss"}, {"word": "nal", "meaning": "redskap med gummikant til å trekke vann av flater"}, {"word": "børste", "meaning": "redskap med bust til å løsne smuss"}, {"word": "skurepad", "meaning": "pad som brukes til å bearbeide en overflate"}, {"word": "avfallssekk", "meaning": "pose til avfall"}, {"word": "dosering", "meaning": "målt mengde rengjøringsmiddel"}], "grammar": "Substantiv: entall, flertall og bestemt form", "grammar_text": "Substantiv er navn på personer, steder, ting og begreper. Entall betyr én: en klut, et skaft. Flertall betyr flere: kluter, skaft. Bestemt form viser at vi snakker om noe bestemt: kluten, skaftet, klutene, skaftene. Vi bruker ofte en eller et foran ubestemt entall: en bøtte, et moppebrett.", "tasks": [{"title": "A. Koble utstyr og funksjon", "items": ["Skriv riktig bokstav ved hvert ord.", "Mikrofiberklut", "A. Suger opp støv og smuss med motor", "Støvsuger", "B. Brukes til å tørke og rengjøre flater", "Mopp", "C. Brukes til gulv", "Nal", "D. Trekker vann av en glatt flate", "Børste", "E. Løsner smuss med bust"]}, {"title": "B. Velg riktig utstyr", "items": ["Velg det utstyret som passer best. Flere svar kan være riktige hvis du forklarer hvorfor.", "Du skal tørke støv av et bord.", "Du skal rengjøre et gulv.", "Du skal fjerne vann fra en glatt glassflate.", "Du skal løsne smuss i et hjørne."]}, {"title": "C. Sant eller usant", "items": ["Moppen festes på et moppebrett.", "Skaftet bør passe til den som arbeider.", "Skadet utstyr skal alltid brukes ferdig.", "Brukt utstyr skal håndteres etter lokale rutiner.", "Det er alltid best å bruke mest mulig utstyr."]}, {"title": "D. Fyll inn riktig substantiv", "items": ["Bruk ordene: klut – mopp – bøtte – skaft – støvsuger.", "Jeg tørker bordet med en __________.", "Jeg vasker gulvet med en __________.", "Vannet er i en __________.", "Jeg holder i et __________.", "Jeg bruker en __________ til å fjerne støv fra teppet."]}, {"title": "E. Entall og flertall", "items": ["Skriv ordene i flertall.", "en klut – flere __________", "en bøtte – flere __________", "et skaft – flere __________", "en børste – flere __________", "et moppebrett – flere __________"]}, {"title": "F. Bestemt form", "items": ["Skriv bestemt form entall.", "en klut – __________", "en mopp – __________", "et skaft – __________", "en bøtte – __________", "et moppebrett – __________"]}, {"title": "G. Instruksjoner i riktig rekkefølge", "items": ["Sett trinnene i riktig rekkefølge før og etter en arbeidsoppgave.", "Velg utstyr som passer.", "Les arbeidsplanen.", "Kontroller at utstyret er helt.", "Utfør oppgaven etter rutinen.", "Rydd og håndter utstyret etterpå."]}], "oral": [{"title": "Utstyrsekspert", "description": "Hver deltaker trekker et utstyrskort. Forklar hva det heter, hva det brukes til, hvordan det brukes, og hvordan det ryddes etterpå. Gruppen stiller minst to spørsmål."}, {"title": "Gjett redskapet", "description": "En deltaker beskriver et redskap uten å si navnet. De andre gjetter. Bruk form, funksjon, materiale og hvor det brukes."}, {"title": "Instruksjonsstafett", "description": "I par: Den ene gir muntlige instruksjoner for å klargjøre en renholdsvogn. Den andre gjentar trinnene og utfører dem i riktig rekkefølge. Bytt roller."}, {"title": "Begrunn valget", "description": "Læreren viser en oppgave, for eksempel støv på en hylle eller vann på en glatt flate. Deltakerne velger utstyr og begrunner valget med fordi."}], "practical": ["Lag en renholdsvogn med utstyr til en bestemt oppgave. Forklar valgene dine.", "Undersøk utstyret visuelt. Finn tegn på skade eller behov for rengjøring, og si hva du gjør.", "Vis hvordan du justerer skaftet og holder kroppen hensiktsmessig.", "Sorter kort med utstyr, bruksområde og vedlikehold."]}, {"n": 3, "title": "Renhold på kontor", "subtitle": "Rom, inventar, overflater, arbeidsrekkefølge og kommunikasjon", "goals": ["Jeg kan navngi vanlige ting og overflater på et kontor.", "Jeg kan lese og følge en enkel arbeidsinstruks.", "Jeg kan beskrive renhold i riktig rekkefølge.", "Jeg kan bruke presens og rekkefølgeord i arbeidsbeskrivelser.", "Jeg kan kommunisere høflig med personer som bruker kontoret."], "reading_title": "Et kontor skal være klart til arbeidsdagen", "reading": "Klokka åtte skal et møterom være klart til et møte. Renholderen Samira får beskjed om å gjøre rent møterommet og kontorområdet ved siden av. Hun leser arbeidsinstruksen før hun begynner. Der står det hvilke oppgaver som skal utføres, og hvilke områder hun ikke skal flytte på.\n\nFørst banker Samira på døren og undersøker om rommet er ledig. Hun setter fram renholdsvognen slik at den ikke står i veien for andre. Hun tar på nødvendig arbeidstøy og velger utstyr som passer til oppgaven. Hun begynner med å samle synlig avfall og tømme avfallsbeholderen etter rutinene. Deretter tørker hun støv av tilgjengelige flater med en egnet klut.\n\nSamira er forsiktig rundt datamaskiner og annet elektronisk utstyr. Hun flytter ikke på private papirer, dokumenter eller personlige eiendeler. Hun sprayer ikke rengjøringsmiddel direkte på elektronisk utstyr. Hvis hun er usikker på hvordan en flate skal rengjøres, spør hun lederen eller følger den lokale instruksen.\n\nEtterpå rengjør hun andre avtalte kontaktpunkter og kontrollerer synlige flekker. Hun støvsuger eller vasker gulvet etter arbeidsplassens rutiner. Hun setter stoler og annet inventar tilbake på plass. Til slutt gjør hun en sluttkontroll: Er avfallet fjernet? Er de avtalte flatene rengjort? Er gulvet i orden? Er rommet klart til møtet?\n\nPå vei ut møter hun en ansatt som spør om hun kan rengjøre et ekstra bord. Samira svarer høflig: «Jeg kan undersøke arbeidsplanen. Hvis oppgaven ikke står der, må jeg avklare det med lederen først.» Hun vet at god kommunikasjon forebygger misforståelser og hjelper henne å prioritere riktig.", "vocab": [{"word": "skrivebord", "meaning": "bord som brukes til å skrive eller arbeide ved"}, {"word": "skjerm", "meaning": "del av en datamaskin som viser tekst og bilder"}, {"word": "tastatur", "meaning": "utstyr med taster som brukes til å skrive"}, {"word": "kontaktpunkt", "meaning": "flate eller gjenstand mange tar på"}, {"word": "overflate", "meaning": "utsiden av en gjenstand eller et materiale"}, {"word": "avfallsbeholder", "meaning": "beholder der vi kaster avfall"}, {"word": "møterom", "meaning": "rom der personer har møter"}, {"word": "inventar", "meaning": "møbler og utstyr i et rom"}, {"word": "flekk", "meaning": "merke eller smuss på en flate"}, {"word": "støv", "meaning": "små partikler som legger seg på flater"}, {"word": "arbeidsinstruks", "meaning": "beskrivelse av hvordan en oppgave skal utføres"}, {"word": "sluttkontroll", "meaning": "kontroll etter at arbeidet er ferdig"}], "grammar": "Rekkefølgeord og presens", "grammar_text": "Rekkefølgeord viser når noe skjer: først, deretter, så, etterpå, til slutt. De gjør en arbeidsbeskrivelse tydelig. Eksempel: Først leser jeg instruksen. Deretter samler jeg avfall. Så tørker jeg støv. Til slutt kontrollerer jeg rommet. Presens beskriver handlingen: jeg tørker, hun kontrollerer, vi støvsuger.", "tasks": [{"title": "A. Finn ord i teksten", "items": ["Finn et ord eller uttrykk som betyr: møbler og utstyr i et rom; en flate mange tar på; kontroll etter arbeidet; beskrivelse av hvordan en oppgave skal gjøres."]}, {"title": "B. Leseforståelse", "items": ["Hvorfor leser Samira arbeidsinstruksen?", "Hva gjør hun før hun begynner å rengjøre?", "Hvorfor flytter hun ikke på private papirer?", "Hva gjør hun før hun forlater rommet?", "Hva svarer hun når hun får en ekstra oppgave?"]}, {"title": "C. Riktig eller galt?", "items": ["Samira begynner uten å undersøke om rommet er ledig.", "Hun setter vognen slik at den ikke er i veien.", "Hun sprayer rengjøringsmiddel direkte på skjermen.", "Hun følger lokale rutiner for gulvet.", "Hun avklarer ekstra oppgaver ved behov."]}, {"title": "D. Sett i riktig rekkefølge", "items": ["Les trinnene og nummerer dem 1–6.", "Tørk støv av tilgjengelige flater.", "Les arbeidsinstruksen.", "Gjør sluttkontroll.", "Samle synlig avfall.", "Rengjør gulvet etter rutinen.", "Undersøk om rommet er ledig."]}, {"title": "E. Rekkefølgeord", "items": ["Fyll inn: først – deretter – så – etterpå – til slutt.", "________ leser jeg arbeidsinstruksen.", "________ samler jeg avfall.", "________ tørker jeg støv.", "________ rengjør jeg gulvet.", "________ kontrollerer jeg rommet."]}, {"title": "F. Presens", "items": ["Sett verbet i presens.", "Jeg (tørke) __________ bordet.", "Samira (lese) __________ instruksen.", "Vi (kontrollere) __________ rommet.", "Renholderen (samle) __________ avfall.", "De (støvsuge) __________ gulvet."]}, {"title": "G. Høflig kommunikasjon", "items": ["Skriv et høflig svar i hver situasjon.", "En ansatt ber deg flytte private papirer.", "Du får en oppgave du ikke forstår.", "En kollega spør om rommet er klart.", "Du oppdager en flekk du ikke får fjernet."]}], "oral": [{"title": "Kontorvert og renholder", "description": "To og to. Én spiller en ansatt som skal bruke kontoret. Den andre er renholder. Den ansatte har tre ønsker, men én oppgave er ikke avtalt. Renholderen må stille spørsmål, forklare rutiner og avklare med leder."}, {"title": "Beskriv bildet uten å peke", "description": "En deltaker beskriver et kontor: møbler, utstyr, overflater og mulige oppgaver. Partneren tegner en enkel skisse ut fra beskrivelsen. Sammenlign og forbedre presisjonen."}, {"title": "Arbeidsinstruks på 60 sekunder", "description": "Forklar hvordan du gjør rent et møterom. Bruk minst seks fagord og fire rekkefølgeord. Partneren lytter og gjenforteller."}, {"title": "Problemløsing i gruppe", "description": "Gruppen får et scenario: møtet starter om ti minutter, gulvet er vått, en stol er ødelagt og en ansatt ber om ekstra renhold. Bli enige om hva som må gjøres først, hva som må meldes, og hva som må avklares."}], "practical": ["Gjennomfør en simulert renholdsrunde i et kontor eller klasserom med arbeidsinstruks.", "Marker hvilke flater som er kontaktpunkter, og forklar hvorfor de er relevante.", "Tren på å la private dokumenter og elektronisk utstyr ligge urørt med mindre rutinen sier noe annet.", "Utfør sluttkontroll og gi en muntlig statusmelding til leder."]}];
+const sessions=[
+[
+[["Oppstart, mål og forkunnskaper",15],["Fagord i bevegelse: ord, bilde og gjenstand",20],["Første lesing: forstå hovedinnholdet",20],["Pause",10],["Fagtekst i par: stopp, spør og gjenfortell",25],["Leseforståelse og tekstbevis",25],["Pause",10],["Informasjonsgap i par",25],["Grammatikkverksted",20],["Skriftlig oppsummering og exit-ticket",10]],
+[["Hent fram kunnskap fra forrige økt",15],["Demonstrasjon og modellering",20],["Praktisk oppdrag i par",35],["Pause",10],["Problemløsing i små grupper",30],["Pause",10],["Muntlige rotasjoner og rollespill",25],["Kunnskapstest og felles retting",20],["Egenvurdering og framovermelding",15]]
+],
+[
+[["Hent fram fagord og læringsmål",15],["Sortering: utstyr, funksjon og navn",25],["Fagtekst med lesestrategi",25],["Pause",10],["Stasjonsarbeid: velg riktig redskap",30],["Grammatikk: substantiv og bøying",20],["Pause",10],["Instruksjonsstafett i par",25],["Skriftlig utstyrsbeskrivelse",15],["Oppsummering",5]],
+[["Hurtig repetisjon med fagordkort",15],["Lærer viser trygg klargjøring av utstyr",25],["Praktisk utstyrslab i små grupper",35],["Pause",10],["Problemløsing: hvilket utstyr passer?",25],["Pause",10],["Muntlig ekspertoppdrag",25],["Kunnskapstest og begrunn svar",20],["Egenvurdering og framovermelding",15]]
+],
+[
+[["Oppstart: kontoret som arbeidsplass",15],["Fagord og romkart",20],["Les fagteksten i tre omganger",25],["Pause",10],["Arbeidsrekkefølge med bildekort",25],["Grammatikk: presens og rekkefølgeord",20],["Pause",10],["Muntlig rollespill: ansatt og renholder",25],["Skriv en arbeidsinstruks",20],["Exit-ticket",10]],
+[["Hent fram fagord og rekkefølge",15],["Lærer modellerer kontorrunde",20],["Praktisk renholdssimulering",35],["Pause",10],["Scenario: møtet starter om ti minutter",25],["Pause",10],["Muntlig presentasjon og spørsmål",25],["Kunnskapstest og felles retting",20],["Egenvurdering",20]]
+]
+];
+const quizBank=[
+[
+["Hva er en arbeidsplan?",["En oversikt over oppgaver og tidspunkt","En liste over lønn","En liste over pauser"],0,"Arbeidsplanen viser hva som skal gjøres og når."],
+["Hva gjør du hvis du finner en dryppende kran?",["Prøver å reparere den selv","Meld fra til leder","Ignorerer den"],1,"Meld fra og følg arbeidsplassens rutiner."],
+["Hvilket verb står i presens?",["Jeg ryddet utstyret","Jeg skal rydde utstyret","Jeg rydder utstyret"],2,"«Rydder» står i presens."],
+["Hva betyr kollega?",["Person du arbeider sammen med","Person som kjøper varer","En type utstyr"],0,"En kollega arbeider sammen med deg."],
+["Hva bør du gjøre før du starter arbeidet?",["Lese arbeidsplanen","Gå rett hjem","Gjemme utstyret"],0,"Start med å lese planen og avklare beskjeder."]
+],
+[
+["Hva bruker du vanligvis til gulv?",["Mopp","Tastatur","Papir"],0,"Mopp brukes på gulv når metoden passer."],
+["Hva er flertall av «en klut»?",["kluten","kluter","klutene"],1,"«Kluter» er ubestemt flertall."],
+["Hva gjør du med skadet utstyr?",["Bruker det litt til","Skjuler skaden","Meld fra og følger rutinen"],2,"Skadet utstyr må håndteres etter rutinen."],
+["Hva brukes en nal til?",["Å trekke vann av en glatt flate","Å støvsuge","Å samle avfall"],0,"En nal trekker vann av en glatt flate."],
+["Hva er viktig når du velger skaft?",["At det passer til den som arbeider","At det er kortest mulig","At det er tyngst"],0,"Riktig arbeidshøyde kan gjøre arbeidet mer behagelig."]
+],
+[
+["Hva bør Samira lese før hun starter?",["En privat e-post","Arbeidsinstruksen","En avis"],1,"Instruksen beskriver oppgavene og avgrensningene."],
+["Hva gjør du med private papirer?",["Lar dem ligge","Kaster dem","Flytter dem"],0,"Respekter private eiendeler."],
+["Hvilket ord viser siste trinn?",["Først","Deretter","Til slutt"],2,"«Til slutt» markerer siste trinn."],
+["Hva er et kontaktpunkt?",["En flate mange tar på","Et møterom","En arbeidsplan"],0,"Kontaktpunkter er flater eller gjenstander mange tar på."],
+["Hva gjør du med en ekstra oppgave som ikke står i planen?",["Avklarer med leder","Gjør alltid oppgaven med en gang","Later som du ikke hørte"],0,"Avklar prioritering med leder."]
+]
+];
+let current=0,activeTab="intro",showKeys=false,answers={},passed=[false,false,false];
+const app=document.getElementById("app");
+const allModuleTitles=[
+ "Introduksjon til renholdsyrket",
+ "Renholdsutstyr",
+ "Renhold på kontor",
+ "Renhold på toalett og bad",
+ "Renhold på kjøkken",
+ "Rengjøringsmidler og kjemikalier",
+ "Arbeidsteknikker",
+ "HMS og sikkerhet",
+ "Arbeidsplaner og rutiner",
+ "Kommunikasjon på arbeidsplassen",
+ "Problemer og avvik",
+ "Repetisjon og praktisk kompetanse"
+];
+function buildNav(){
+ const el=document.getElementById("moduleNav");
+ el.innerHTML=allModuleTitles.map((title,i)=>{
+   const ready=i<modules.length;
+   return `<button class="nav ${ready?"":"nav-pending"}" id="nav${i}" ${ready?`onclick="openModule(${i})"`:`onclick="showPending(${i})"`} aria-label="Modul ${i+1}: ${title}${ready?"":" – innhold kommer senere"}"><span class="num">${String(i+1).padStart(2,"0")}</span><span>${title}</span>${ready?"":'<span class="pending-label">Kommer</span>'}</button>`;
+ }).join("");
+}
+function showPending(i){
+ setActive("nav"+i);
+ app.innerHTML=`<section class="module-head"><div class="eyebrow">MODUL ${String(i+1).padStart(2,"0")}</div><h1>${allModuleTitles[i]}</h1><p>Denne modulen er synlig i kursstrukturen, men innholdet er ikke utviklet ennå.</p></section><section class="panel"><h2>Modulen kommer</h2><p>Modulen er planlagt som en del av Moved renhold. Læreren kan foreløpig bruke modul 1–3 og selv velge rekkefølge på undervisningen.</p><button class="btn secondary" onclick="showHome()">Til kursoversikten</button></section>`;
+}
+function setActive(id){
+ document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
+ const e=document.getElementById(id);if(e)e.classList.add("active");
+}
+function showHome(){
+ setActive("homeNav");
+ app.innerHTML=`<section class="hero"><div class="eyebrow">DIGITALT KURS · A2</div><h1>Moved renhold</h1><p>Et praktisk yrkesnorskkurs for voksne deltakere. Du lærer fagord, leser om arbeidsoppgaver, trener på muntlig kommunikasjon og bruker språket i praktiske situasjoner.</p><p><b>Omfang:</b> 12 moduler i full kursplan. Modul 1–3 har ferdig undervisningsinnhold i denne demonstrasjonsversjonen. De øvrige modulene vises i kursstrukturen og utvikles senere.</p><div class="row no-print"><button class="btn" onclick="openModule(0)">Start med modul 1</button><button class="btn secondary" onclick="showTeacher()">Åpne lærerressurser</button></div></section>
+<div class="stats"><div class="stat"><strong>12</strong><small>moduler i kursstrukturen · 3 med ferdig innhold</small></div><div class="stat"><strong>18</strong><small>undervisningstimer samlet</small></div><div class="stat"><strong>A2</strong><small>målrettet yrkesnorsk</small></div></div>
+<div class="eyebrow">KURSINNHOLD</div><h2>Moduloversikt</h2><div class="grid">${allModuleTitles.map((title,i)=>{const m=modules[i];return `<button class="module-card module-tone-${i%6} ${i<3?"":"not-ready"}" onclick="${i<3?`openModule(${i})`:`showPending(${i})`}" aria-label="Modul ${i+1}: ${title}"><span class="module-no">MODUL ${String(i+1).padStart(2,"0")}</span><h3>${title}</h3><p>${m?m.subtitle:"Planlagt modul i kurset."}</p><span class="card-foot">${i<3?"2 økter · 6 undervisningstimer · Åpne modul →":"Innhold kommer senere"}</span></button>`}).join("")}</div>
+<div class="panel"><h2>Arbeidsmåte</h2><p>Hver modul følger en aktiv læringssyklus: aktiver forkunnskaper → les og lytt → lær fagord → utforsk språk → snakk sammen → prøv i praksis → reflekter.</p><p class="muted">Alle tre modulene er åpne. Læreren bestemmer rekkefølgen.</p></div>
+<footer>Moved renhold · MOVE – Molde voksenopplæring · Lokal demonstrasjonsversjon</footer>`;
+}
+function openModule(i){current=i;activeTab="intro";showKeys=false;answers={};setActive("nav"+i);renderModule();window.scrollTo(0,0)}
+function renderModule(){
+ const m=modules[current];
+ const tabs=[["intro","Oversikt"],["reading","Fagtekst"],["words","Ordliste"],["tasks","Oppgaver"],["grammar","Grammatikk"],["oral","Muntlig trening"],["practical","Praktisk arbeid"],["plan1","Økt 1"],["plan2","Økt 2"],["quiz","Kunnskapstest"],["key","Lærerfasit"]];
+ app.innerHTML=`<div class="module-head"><div class="eyebrow">MODUL ${String(current+1).padStart(2,"0")} · 6 UNDERVISNINGSTIMER</div><h1>${m.title}</h1><p>${m.subtitle}</p></div>
+ <div class="status"><div><b>${passed[current]?"Bestått": "Åpen modul"}</b><br><span class="muted">To undervisningsøkter à 180 minutter. Modulen er tilgjengelig uavhengig av progresjon.</span></div><div class="progress"><i style="width:${passed[current]?100:0}%"></i></div></div>
+ <div class="tabs">${tabs.map(([k,v])=>`<button class="tab ${activeTab===k?"active":""}" onclick="activeTab='${k}';renderModule()">${v}</button>`).join("")}</div>
+ <div id="tabContent">${tabContent(m)}</div>
+ <footer><button class="btn secondary no-print" onclick="showHome()">← Til kursoversikten</button> <button class="btn secondary no-print" onclick="window.print()">Skriv ut / lagre som PDF</button><div style="margin-top:14px">Moved renhold · Modul ${current+1} av 3 i demonstrasjonsversjonen</div></footer>`;
+}
+function tabContent(m){
+ if(activeTab==="intro")return `<section class="panel"><div class="eyebrow">VELKOMMEN</div><h2>Dette skal du lære</h2>${m.goals.map(g=>`<p>□ ${g}</p>`).join("")}<div class="callout"><b>Start med å snakke:</b> Hva vet du allerede om temaet? Hvilke ord bruker du på jobb? Fortell en partner.</div><h3>Forslag til arbeidsmåte</h3><ol><li>Les læringsmålene.</li><li>Snakk om temaet før dere leser.</li><li>Les fagteksten og marker nye ord.</li><li>Gjør oppgavene og forklar svarene.</li><li>Avslutt med muntlig og praktisk trening.</li></ol><div class="row"><button class="btn" onclick="activeTab='reading';renderModule()">Les fagteksten →</button><button class="btn secondary" onclick="activeTab='plan1';renderModule()">Se undervisningsplan</button></div></section>`;
+ if(activeTab==="reading")return `<section class="panel"><div class="eyebrow">LES OG FORSTÅ</div><h2>${m.reading_title}</h2>${m.reading.split("\n\n").map(x=>`<p style="font-size:16px;line-height:1.85">${x}</p>`).join("")}<div class="callout"><b>Lesestrategi</b><ol><li>Les én gang for å forstå hovedinnholdet.</li><li>Les på nytt og marker fagord.</li><li>Fortell teksten med egne ord.</li><li>Finn en setning du vil spørre om.</li></ol></div><h3>Sjekk forståelsen</h3><p>1. Hva er hovedtemaet i teksten?</p><p>2. Hvilke handlinger er viktige?</p><p>3. Hvilke ord kan du bruke på arbeidsplassen?</p><textarea id="readingNote" placeholder="Skriv et kort sammendrag med egne ord..."></textarea></section>`;
+ if(activeTab==="words")return `<section class="panel"><div class="eyebrow">ORD OG BEGREPER</div><h2>Fagord i modulen</h2><p>Les ordet og forklaringen. Lag en egen setning med hvert ord. Bruk gjerne tale-knappen for å høre uttalen.</p><div class="word-grid">${m.vocab.map(w=>`<div class="word"><b>${w.word}</b><small>${w.meaning}</small><button class="btn secondary no-print" onclick="speak(${JSON.stringify(w.word)})">Lytt</button></div>`).join("")}</div></section>`;
+ if(activeTab==="tasks")return `<section class="panel"><div class="eyebrow">TRENING</div><h2>Oppgaver – arbeid på flere måter</h2><p>Gjør oppgavene individuelt først. Sammenlign svar med en partner og forklar hvordan du tenkte.</p>${m.tasks.map((t,i)=>`<div class="task"><h3>${t.title}</h3>${t.items.map((x,j)=>`<p>${j+1}. ${x}</p><textarea aria-label="Svar ${i+1}.${j+1}" placeholder="Skriv svaret ditt her..."></textarea>`).join("")}</div>`).join("")}</section>`;
+ if(activeTab==="grammar")return `<section class="panel"><div class="eyebrow">SPRÅK I ARBEID</div><h2>${m.grammar}</h2><p>${m.grammar_text}</p><div class="callout">Les eksemplene høyt. Finn tre eksempler i fagteksten. Skriv deretter fem egne setninger fra en arbeidssituasjon.</div><textarea placeholder="Skriv setningene dine her..."></textarea></section>`;
+ if(activeTab==="oral")return `<section class="panel"><div class="eyebrow">MUNTLIG KOMMUNIKASJON</div><h2>Snakk for å lære</h2><p>Arbeid i par eller små grupper. Bytt roller slik at alle får snakke. Lytteren skal stille oppfølgingsspørsmål.</p>${m.oral.map((o,i)=>`<div class="task"><h3>${i+1}. ${o.title}</h3><p>${o.description}</p><p><b>Setningsstartere:</b> «Jeg mener at …», «Kan du forklare …?», «Først …, deretter …», «Jeg er enig fordi …», «Jeg vil gjerne avklare …».</p></div>`).join("")}</section>`;
+ if(activeTab==="practical")return `<section class="panel"><div class="eyebrow">LÆR VED Å GJØRE</div><h2>Praktiske oppdrag</h2><p>Gjennomfør oppdragene under veiledning. Følg alltid arbeidsplassens rutiner og HMS-instrukser.</p>${m.practical.map((x,i)=>`<div class="task"><h3>Oppdrag ${i+1}</h3><p>${x}</p><label><input type="checkbox"> Gjennomført</label></div>`).join("")}<h3>Refleksjon etter arbeidet</h3><textarea placeholder="Hva gjorde du? Hvilke ord brukte du? Hva lærte du?"></textarea></section>`;
+ if(activeTab==="plan1"||activeTab==="plan2"){let which=activeTab==="plan1"?0:1;let rows=sessions[current][which];let sum=0;return `<section class="panel"><div class="eyebrow">UNDERVISNINGSPLAN</div><h2>Økt ${which+1} – 180 minutter</h2><p>Planen kombinerer forståelig faglig input, aktiv språkbruk, samarbeid og praktisk trening.</p>${rows.map(r=>{let st=sum;sum+=r[1];return `<div class="schedule"><div class="time">${clock(st)}–${clock(sum)}</div><div>${r[0]}</div><div class="mins">${r[1]} min</div></div>`}).join("")}<div class="callout"><b>Sum: ${sum} minutter.</b> Tilpass tempo og støtte etter gruppens behov. Sørg for at alle deltakere får aktiv taletid.</div></section>`}
+ if(activeTab==="quiz")return `<section class="panel"><div class="eyebrow">KONTROLLER KUNNSKAPEN</div><h2>Kunnskapstest – ${m.title}</h2><p>Velg ett svar per spørsmål. Du får tilbakemelding med en gang. Testen er en læringsaktivitet, ikke en erstatning for praktisk vurdering.</p>${quizBank[current].map((q,i)=>`<div class="question"><b>${i+1}. ${q[0]}</b><div>${q[1].map((a,j)=>`<button class="option" onclick="checkAnswer(${i},${j},this)">${String.fromCharCode(65+j)}. ${a}</button>`).join("")}</div><div id="quizfb${i}" class="feedback" aria-live="polite"></div></div>`).join("")}<div id="quizResult" class="callout">Svar på alle spørsmålene for å se resultatet.</div><div class="row no-print"><button class="btn secondary" onclick="answers={};activeTab='quiz';renderModule()">Start testen på nytt</button></div></section>`;
+ if(activeTab==="key")return `<section class="panel"><div class="eyebrow">LÆRERRESSURS</div><h2>Fasit og vurderingsstøtte</h2><div class="warning"><b>Lærervisning:</b> Denne delen er ment for lærer. Den kan brukes til felles gjennomgang etter at deltakerne har arbeidet selvstendig.</div><h3>Kunnskapstest</h3>${quizBank[current].map((q,i)=>`<div class="answer-key"><b>${i+1}. ${q[0]}</b><p>Riktig svar: ${q[1][q[2]]}</p><p>${q[3]}</p></div>`).join("")}<h3>Forslag til vurdering av muntlig arbeid</h3><ul><li>Bruker relevante fagord.</li><li>Forstår og følger hovedinnholdet i en instruks.</li><li>Stiller spørsmål og deltar i samhandling.</li><li>Forklarer en praktisk framgangsmåte.</li><li>Budskapet er forståelig, selv om grammatikk fortsatt er under utvikling.</li></ul><h3>Faglig sikkerhet</h3><p>Følg lokale rutiner, produktetiketter og sikkerhetsdatablader. Ikke bland rengjøringsmidler. Stans og spør ansvarlig leder ved usikkerhet.</p></section>`;
+ return "";
+}
+function checkAnswer(qi,choice,btn){
+ if(answers[qi]!==undefined)return;
+ answers[qi]=choice;let q=quizBank[current][qi],ok=choice===q[2];
+ let box=btn.parentElement;[...box.children].forEach((b,j)=>{b.disabled=true;if(j===q[2])b.classList.add("correct")});
+ if(!ok)btn.classList.add("wrong");
+ document.getElementById("quizfb"+qi).textContent=(ok?"Riktig. ":"Ikke helt riktig. ")+q[3];
+ document.getElementById("quizfb"+qi).style.color=ok?"#23724a":"#9b4b40";
+ if(Object.keys(answers).length===quizBank[current].length){
+   let score=quizBank[current].reduce((s,x,i)=>s+(answers[i]===x[2]?1:0),0);
+   let result=document.getElementById("quizResult");
+   result.innerHTML=`Du fikk <b>${score} av ${quizBank[current].length} riktige.</b> ${score===quizBank[current].length?"Godt jobbet – du har bestått kunnskapstesten.":"Les tilbakemeldingene og prøv testen på nytt."}`;
+   if(score===quizBank[current].length)passed[current]=true;
+ }
+}
+function clock(n){return String(8+Math.floor(n/60)).padStart(2,"0")+":"+String(n%60).padStart(2,"0")}
+function speak(word){if("speechSynthesis" in window){let u=new SpeechSynthesisUtterance(word);u.lang="nb-NO";speechSynthesis.speak(u)}else alert("Denne nettleseren støtter ikke taleavspilling.")}
+function showTeacher(){setActive("");app.innerHTML=`<div class="eyebrow">LÆRERRESSURSER</div><h1>Lærerens verktøykasse</h1><p class="muted">Alt innholdet ligger innebygget i denne HTML-filen. Du trenger ikke separate Word-, PowerPoint- eller bildefiler for å vise fram kursinnholdet.</p><section class="panel"><h2>Didaktisk arbeidsmåte</h2><p>Aktiver forkunnskaper → les og lytt → lær fagord → utforsk språk → samhandle muntlig → prøv i praksis → reflekter.</p><p>Oppgavene bruker varierte arbeidsformer: matching og sortering kan gjennomføres med kort, sant/usant og flervalg brukes som kontroll, informasjonsgap og rollespill gir muntlig interaksjon, og praktiske oppdrag knytter språket til handling.</p></section>${modules.map((m,i)=>`<section class="panel"><h2>Modul ${i+1}: ${m.title}</h2><p>${m.subtitle}</p><p><b>Omfang:</b> 2 økter à 180 minutter.</p><p><b>Innhold:</b> fagtekst, ordliste, oppgaver, grammatikk, muntlig trening, praktiske oppdrag, undervisningsplan og fasit.</p><button class="btn" onclick="openModule(${i});activeTab='plan1';renderModule()">Åpne lærerplan</button> <button class="btn secondary" onclick="openModule(${i});activeTab='key';showKeys=true;renderModule()">Åpne fasit</button></section>`).join("")}<section class="panel"><h2>Viktig før ordinær kursdrift</h2><ul><li>Fagperson må kontrollere renholdsfaglig innhold og lokale rutiner.</li><li>HMS-innhold må kontrolleres mot gjeldende instrukser og sikkerhetsdatablader.</li><li>Videoer må velges og kvalitetssikres særskilt. Denne filen bruker ikke tilfeldige eksterne videolenker.</li><li>Test oppgavene med deltakere på A2-nivå og juster språk og tidsbruk.</li></ul></section>`}
+buildNav();showHome();
+</script>
+</body>
+</html>
